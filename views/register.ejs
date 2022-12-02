@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+
+
+
+button{
+   width: 70px;
+   height: 30px;
+   background: purple;
+   color: white;
+   margin-top: 29px;
+
+}
+input{
+  font-size: 1rem;
+  text-emphasis: wrap;  
+  padding: 0.4em 1em;
+  margin-left: 20px;
+
+}
+form{
+    position: absolute;
+    text-align: center;
+    justify-content: center;
+    left: 500px;
+    padding-top: 50px;
+}
+</style>
+<body>
+    <form id = "form" class = "addUser"  name = "form" class="field" >
+        <h3>Register</h3>
+        <div>
+            <label for = "name">Name</label>
+                <input type = "text" id="emailInput" name = "name" placeholder = "Enter the Name" />
+                    <small></small>  
+        </div>
+        <br></br>
+        <div>
+        <label for = "emailId">Email-Id</label>
+            <input type = "text" id="emailInput" name = "emailId" placeholder = "Enter the EmailId" />
+                <small></small>  
+        </div>
+        <br></br>
+            <div className="field">
+            <label for = "password">Password  </label>
+            <input type = "text" name = "password"  placeholder = " Enter password"  />
+            </div>
+            <br></br>
+            <div className="field">
+                <label for = "confirm password" style="margin-left: -28px;">check Password</label>
+                <input type = "text" name = "cnfmPassword"  placeholder = "Enter confirm password" style="margin-left:0px"  />
+            </div>
+            <div>
+                <button id = "submit-btn1" formmethod = "post" formaction="/login" type="submit" >Submit</button>
+            </div>
+
+    </form>
+</body>
+
+
+<script>
+
+</script>

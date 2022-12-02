@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+
+
+button{
+   width: 70px;
+   height: 30px;
+   background: purple;
+   color: white;
+   margin-top: 29px;
+
+}
+input{
+  font-size: 1rem;
+  text-emphasis: wrap;  
+  padding: 0.4em 1em;
+  margin-left: 20px;
+
+}
+form{
+    position: absolute;
+    text-align: center;
+    justify-content: center;
+    left: 550px;
+    padding-top: 90px;
+}
+
+    </style>
+<body>
+    <div id="create">
+    
+    <form>
+        <h2>To Do List</h2>
+    <label style="padding-right: 60px;"> Title</label>
+    <input type = "text" id="title" name = "title" placeholder = "Enter the title" />
+    <br></br>
+    <label style="padding-right: 45px;">Subject</label>
+    <input type = "text" id="subject" name = "subject" placeholder = "Enter the subject" />
+    <br></br>
+    <label style="padding-right: 18px;">Description</label>
+    <input type = "text" id="description" name = "description" placeholder = "Enter the description" />
+    <br></br>
+
+    <button style="margin-bottom: 38px;" id = "submit-btn1" formmethod = "post" formaction="/viewToDo" type="submit" > submit</button>
+    </div>
+</form>
+
+</body>
+<script>
+</script>
