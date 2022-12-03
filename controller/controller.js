@@ -44,10 +44,11 @@ exports.createToDo=((req,res)=>{
         subject:req.body.subject,
         description:req.body.description
     }
+    
     todoSchema.create(data,(err,resp)=>{
             if(resp){
                 todoSchema.find({})
-                .then(data => {res.render("viewToDo.ejs", { data:data,token:req.body.token })})
+                .then(data => {res.render("viewToDo.ejs", { data:data,token:req.body.JWTtoken })})
                 .catch(err => {})
             }else{
                 res.json({status:false,msg:"Error occur while registering the user",err:err})

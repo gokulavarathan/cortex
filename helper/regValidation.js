@@ -56,7 +56,7 @@ exports.postValidation = (req, res, next) => {
 
 
 exports.tokenMiddlewareAdmin = (req, res, next) => {
-
+console.log(req.body.gotoNode,"req.body.")
 var token = req.body.gotoNode.split(' ')[1]
 req._id = req.body.gotoNode.split(' ')[0]
         if (token != null ) {
