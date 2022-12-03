@@ -42,7 +42,7 @@ app.use(function(err, req, res, next) {
 
 
 var server= http.createServer(app)
-server.listen(4000,()=>{console.log("server is running on https://localhost:4000")})
+server.listen(4000,()=>{console.log("server is running on http://localhost:4000")})
 
 
 module.exports = app;

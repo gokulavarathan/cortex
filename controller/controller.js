@@ -26,7 +26,7 @@ exports.crud=((req,res)=>{
         if(resp){
             if(resp.length !=0){
                 let payload = { subject: resp[0]._id };
-                let token = jwt.sign(payload, "embeddedJavaScript", { "expiresIn": 60 * 30 });
+                let token = jwt.sign(payload, "embeddedJavaScript");
                 todoSchema.find({}).then(data => res.render("viewToDo.ejs", { data:data,token:token }))
                 .catch(err => console.log(err))
             }else{
@@ -39,11 +39,16 @@ exports.crud=((req,res)=>{
 })
 
 exports.createToDo=((req,res)=>{
-    todoSchema.create(req.body,(err,resp)=>{
+    var data={
+        title:req.body.title,
+        subject:req.body.subject,
+        description:req.body.description
+    }
+    todoSchema.create(data,(err,resp)=>{
             if(resp){
-                todoSchema.find({}).then(data => res.render("viewToDo.ejs", { data:data }))
-    .catch(err => console.log(err))
-    
+                todoSchema.find({})
+                .then(data => {res.render("viewToDo.ejs", { data:data,token:req.body.token })})
+                .catch(err => {})
             }else{
                 res.json({status:false,msg:"Error occur while registering the user",err:err})
             }
@@ -52,20 +57,17 @@ exports.createToDo=((req,res)=>{
 })
 
 exports.delete=((req,res)=>{
-    console.log("comming",req.body.gotoNode)
-    if(req.body.gotoNode != "" && req.body.gotoNode !=null){
-
-        var where = { _id: req.body.gotoNode }
+    var token = req.body.gotoNode.split(' ')[1]
+        var where = { _id: req._id }
         todoSchema.deleteOne(where,(err,resp)=>{
+
         if (!err) {
-            todoSchema.find({}).then(data => res.render("viewToDo.ejs", { data:data }))
-            .catch(err => console.log(err))     } 
+            todoSchema.find({}).then(data => res.render("viewToDo.ejs", { data:data,token:token }))
+            .catch(err => console.log(err))  
+        } 
             else {
             res.status(400).send({ status: false, msg: "Error Occur while  Deleting user data", error: error })
         }
         })
-    }else{
-        res.status(400).send({ status: false, msg: "Need id of the row" })
-
-    }
+    
 })

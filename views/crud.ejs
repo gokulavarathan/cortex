@@ -47,11 +47,13 @@ form{
     <label style="padding-right: 18px;">Description</label>
     <input type = "text" id="description" name = "description" placeholder = "Enter the description" />
     <br></br>
-
+    <input type = "text" id="JWTtoken" name = "JWTtoken" style="display: none;"/>
     <button style="margin-bottom: 38px;" id = "submit-btn1" formmethod = "post" formaction="/viewToDo" type="submit" > submit</button>
     </div>
 </form>
 
 </body>
 <script>
+    document.getElementById("JWTtoken").value = localStorage.getItem("jwtToken");
+
 </script>

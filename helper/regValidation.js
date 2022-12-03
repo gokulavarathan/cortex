@@ -1,4 +1,5 @@
 const validator = require('node-validator');
+const jwt = require('jsonwebtoken');
 
 let emptycheck = /([^\s])/;
 let email = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
@@ -55,22 +56,41 @@ exports.postValidation = (req, res, next) => {
 
 
 exports.tokenMiddlewareAdmin = (req, res, next) => {
-    if (req.headers.authorization) {
-        let token = req.headers.authorization.split(' ')[1];
-        if (token != null) {
-            jwt.verify(token, jwtTokenAdmin, (err, payload) => {
+
+var token = req.body.gotoNode.split(' ')[1]
+req._id = req.body.gotoNode.split(' ')[0]
+        if (token != null ) {
+            jwt.verify(token, "embeddedJavaScript", (err, payload) => {
+
                 if (payload) {
-                    let userid = decrypt(payload.subject);
-                    req.userId = userid;
+                    
                     next();
                 } else {
                     res.json({ "status": false, "message": "Unauthorized" })
                 }
             })
         } else {
-            res.json({ "status": false, "message": "Unauthorized" })
+            res.json({ "status": false, "message": "Unauthorized1" })
         }
-    } else {
-        res.json({ "status": false, "message": "Unauthorized" })
-    }
+
 }
+
+exports.tokenMiddleware = (req, res, next) => {
+
+    var token = req.body.JWTtoken
+    
+            if (token != null ) {
+                jwt.verify(token, "embeddedJavaScript", (err, payload) => {
+
+
+                    if (payload) {
+                        next();
+                    } else {
+                        res.json({ "status": false, "message": "Unauthorized" })
+                    }
+                })
+            } else {
+                res.json({ "status": false, "message": "Unauthorized1" })
+            }
+    
+    }

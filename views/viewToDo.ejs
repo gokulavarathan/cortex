@@ -75,8 +75,8 @@
                 <td> <%= data[i].description %></td>
                 <td>
                     <form >
-                        <button data-id = "<%= data[i]._id   %>"
-                            name='gotoNode' id = "deleteBtn" formmethod = "post" formaction="/delete" value="<%= data[i]._id  %>">Delete</button>
+                        <button 
+                            name='gotoNode' id = "deleteBtn" formmethod = "post" formaction="/delete" value="<%= data[i]._id  %> <%= token %>">Delete</button>
                     </form>
                     
                 
@@ -86,12 +86,12 @@
 
         </tr>   
         </table>
+        <input style="display: none" id="jwtToken" name="token" value="<%= token %>"></input>
     </div> 
 </body>
 <script>
-    function check(){
-        const jwtToken = document.getElementById("jwtToken")
-
-        console.log(jwtToken,"token")
-    }
+    
+        const jwtToken = document.getElementById("jwtToken").value
+        localStorage.setItem("jwtToken",jwtToken)
+    
 </script>
